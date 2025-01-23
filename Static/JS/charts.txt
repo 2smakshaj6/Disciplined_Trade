@@ -1,0 +1,112 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Create or target the chart container
+    let chartContainer = document.getElementById('chart');
+
+    if (!chartContainer) {
+        chartContainer = document.createElement('div');
+        chartContainer.id = 'chart';
+        chartContainer.style.width = '1000px'; // Fixed width
+        chartContainer.style.height = '600px'; // Fixed height
+        chartContainer.style.margin = '0 auto'; // Center horizontally
+        document.body.insertBefore(chartContainer, document.querySelector('footer'));
+    }
+
+    // Initialize Lightweight Chart with custom styling
+    const chart = LightweightCharts.createChart(chartContainer, {
+        width: chartContainer.clientWidth,
+        height: 400,
+        layout: {
+            backgroundColor: '#000000', // Black background
+            textColor: '#000000', // Yellow text
+        },
+        grid: {
+            vertLines: {
+                color: '#333333',
+            },
+            horzLines: {
+                color: '#333333',
+            },
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+            borderColor: '#ffff00',
+        },
+        timeScale: {
+            borderColor: '#ffff00',
+        },
+    });
+
+    // Line Chart (Primary Chart)
+    const lineSeries = chart.addLineSeries({
+        color: '#ff9900',
+        lineWidth: 2,
+    });
+    lineSeries.setData([
+        { time: '2022-01-01', value: 150 },
+        { time: '2022-01-02', value: 152 },
+        { time: '2022-01-03', value: 148 },
+        { time: '2022-01-04', value: 155 },
+        { time: '2022-01-05', value: 160 },
+    ]);
+
+    // Candlestick Chart (Additional Chart)
+    const candlestickSeries = chart.addCandlestickSeries({
+        upColor: '#4caf50',
+        downColor: '#f44336',
+        borderVisible: false,
+        wickUpColor: '#4caf50',
+        wickDownColor: '#f44336',
+    });
+    candlestickSeries.setData([
+        { time: '2022-01-01', open: 150, high: 155, low: 148, close: 152 },
+        { time: '2022-01-02', open: 152, high: 158, low: 151, close: 155 },
+        { time: '2022-01-03', open: 155, high: 160, low: 153, close: 158 },
+    ]);
+
+    // Tooltip Implementation
+    const tooltip = document.createElement('div');
+    tooltip.style.position = 'absolute';
+    tooltip.style.background = '#fff';
+    tooltip.style.border = '1px solid #ccc';
+    tooltip.style.padding = '5px';
+    tooltip.style.display = 'none';
+    tooltip.style.pointerEvents = 'none';
+    document.body.appendChild(tooltip);
+
+    chart.subscribeCrosshairMove((param) => {
+        if (param.point && param.seriesPrices.size > 0) {
+            const price = param.seriesPrices.get(lineSeries);
+            tooltip.style.left = param.point.x + 'px';
+            tooltip.style.top = param.point.y + 'px';
+            tooltip.style.display = 'block';
+            tooltip.innerHTML = price ? `Price: ${price}` : '';
+        } else {
+            tooltip.style.display = 'none';
+        }
+    });
+
+    // Clickable Points
+    chart.subscribeClick((param) => {
+        if (param.time) {
+            alert(`You clicked on time: ${param.time}`);
+        }
+    });
+
+    // Periodic Data Refresh
+    setInterval(() => {
+        fetch('/market_data/AAPL')
+            .then((response) => response.json())
+            .then((data) => {
+                const updatedData = { time: '2022-01-06', value: data.last }; // Mock update
+                lineSeries.update(updatedData); // Update Line Series
+            })
+            .catch((error) => console.error('Error fetching market data:', error));
+    }, 5000); // Refresh every 5 seconds
+
+    // Resize chart when window resizes
+    window.addEventListener('resize', () => {
+        chart.resize(chartContainer.clientWidth, 400);
+    });
+});

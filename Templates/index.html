@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.title }}</title>
+    <link rel="stylesheet" href="/static/Styles/styles.css">
+    <script src="/static/JS/charts.js" defer></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+    <header class="center-content">
+        <h1>{{ data.title }}</h1>
+        <!-- <p1>{{ data.message }}</p1> -->
+        <nav>
+            <ul>
+                <li><a href="/" class="{{ 'active' if active_page == 'dashboard' else '' }}">Dashboard</a></li>
+                <li><a href="/account"class="{{ 'active' if active_page == 'account' else '' }}">Account</a></li>
+                <li><a href="/market_data" class="{{ 'active' if active_page == 'market_data' else '' }}">Market Data</a></li>
+                <li><a href="/about" class="{{ 'active' if active_page == 'about' else '' }}">About</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_page == 'contact' else '' }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Dashboard Overview</h2>
+        
+        <!-- Account Summary Section -->
+        <div class="account-summary">
+          <div class="account-card">
+            <h3>Net Liquidation</h3>
+            <p>$100,000.00</p>
+          </div>
+          <div class="account-card">
+            <h3>Available Funds</h3>
+            <p>$50,000.00</p>
+          </div>
+          <div class="account-card">
+            <h3>Buying Power</h3>
+            <p>$200,000.00</p>
+          </div>
+        </div>
+      
+        <!-- Market Highlights Section -->
+        <h3>Market Highlights</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Last Price</th>
+              <th>Change %</th>
+              <th>Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AAPL</td>
+              <td>$150.00</td>
+              <td>+1.5%</td>
+              <td>1.2M</td>
+            </tr>
+            <tr>
+              <td>GOOGL</td>
+              <td>$2800.00</td>
+              <td>-0.5%</td>
+              <td>800K</td>
+            </tr>
+            <tr>
+              <td>AMZN</td>
+              <td>$3500.00</td>
+              <td>+2.0%</td>
+              <td>1.8M</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <!-- Quick Actions Section -->
+        <h3>Quick Actions</h3>
+        <div class="quick-actions">
+          <button onclick="location.href='/market_data'">📊 Go to Market Data</button>
+          <button onclick="location.href='/account'">👤 View Account</button>
+        </div>
+      </main>
+      
+    <footer>
+        <p>&copy; 2025 Disciplined Trade. All Rights Reserved.</p>
+        <p> <a href="/privacy">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Disciplined Trade</title>
+    <link rel="stylesheet" href="/static/Styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>{{ data.title }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/" class="{{ 'active' if active_page == 'dashboard' else '' }}">Dashboard</a></li>
+                <li><a href="/account"class="{{ 'active' if active_page == 'account' else '' }}">Account</a></li>
+                <li><a href="/market_data" class="{{ 'active' if active_page == 'market_data' else '' }}">Market Data</a></li>
+                <li><a href="/about" class="{{ 'active' if active_page == 'about' else '' }}">About</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_page == 'contact' else '' }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>About Us</h1>
+        <p>Welcome to the about page of Disciplined Trade!</p>
+        <p>Disciplined Trade is a platform designed to help you make informed trading decisions with interactive tools and data visualization.</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Disciplined Trade. All Rights Reserved.</p>
+        <p> <a href="/privacy">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

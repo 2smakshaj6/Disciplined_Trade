@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Data - DT</title>
+    <link rel="stylesheet" href="/static/styles/styles.css">
+    <script src="/static/JS/charts.js" defer></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+    <header>
+        <h1>{{ data.title }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/" class="{{ 'active' if active_page == 'dashboard' else '' }}">Dashboard</a></li>
+                <li><a href="/account" class="{{ 'active' if active_page == 'account' else '' }}">Account</a></li>
+                <li><a href="/market_data" class="{{ 'active' if active_page == 'market_data' else '' }}">Market Data</a></li>
+                <li><a href="/about" class="{{ 'active' if active_page == 'about' else '' }}">About</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_page == 'contact' else '' }}">Contact</a></li>
+              
+            </ul>
+        </nav>
+    </header>
+    <div id="layout">
+        <div id="chart-controls">
+            <button>1D</button>
+            <button>1W</button>
+            <button>1M</button>
+        </div>
+
+        <!-- Chart Section -->
+        <div id="chart"></div>
+
+        <!-- Status Bar -->
+        <div id="status-bar">
+            <p>Account Balance: $100,000.00</p>
+            <p>Buying Power: $200,000.00</p>
+            <p>Orders: 5 Pending</p>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div id="action-buttons">
+        <button>Add to Cart</button>
+        <button>Sell</button>
+        <button>Buy</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Disciplined Trade. All Rights Reserved.</p>
+        <p><a href="/privacy">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

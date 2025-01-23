@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Disciplined Trade</title>
+    <link rel="stylesheet" href="/static/Styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>{{ data.title }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/" class="{{ 'active' if active_page == 'dashboard' else '' }}">Dashboard</a></li>
+                <li><a href="/account" class="{{ 'active' if active_page == 'account' else '' }}">Account</a></li>
+                <li><a href="/market_data" class="{{ 'active' if active_page == 'market_data' else '' }}">Market Data</a></li>
+                <li><a href="/about" class="{{ 'active' if active_page == 'about' else '' }}">About</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_page == 'contact' else '' }}">Contact</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Account Overview</h2>
+        <p>Here is your account summary:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Net Liquidation</td>
+                    <td>$100,000.00</td>
+                </tr>
+                <tr>
+                    <td>Available Funds</td>
+                    <td>$50,000.00</td>
+                </tr>
+                <tr>
+                    <td>Buying Power</td>
+                    <td>$200,000.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2025 Disciplined Trade. All Rights Reserved.</p>
+        <p> <a href="/privacy">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
